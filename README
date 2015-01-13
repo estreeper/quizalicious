@@ -1,6 +1,7 @@
 This is a simple quizzing application that works like flashcards.
 
-You store question and answer pairs to form quizzes. Based on whether you get a question right
-or not, you will have a lesser or greater chance of seeing it again. For instance, if you get
-a question right, the probability of you seeing that question again is reduced. This way you see
-the questions you're worse at more often.
+You store question and answer pairs to form quizzes. Based on whether you get a
+question right or not, you will have a lesser or greater chance of seeing it 
+again. For instance, if you get a question right, the probability of you 
+seeing that question again is reduced. This way you see the questions you're 
+worse at more often.
