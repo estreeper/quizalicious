@@ -11,18 +11,28 @@ db = StrictRedis(host=config.REDIS_HOST, port=config.REDIS_PORT)
 @app.route('/')
 def main():
     available_quizzes = db.smembers('quizzes')
-    return render_template('templates/main.html', quizzes=available_quizzes)
+    return render_template('main.html', quizzes=available_quizzes)
 
-@app.route('/quiz/start/<quiz_name>')
-def start_quiz(quiz_name):
-    return render_template('templates/quiz-start.html', quiz_name=quiz_name)
+@app.route('/quiz/start/<quiz_url_name>')
+def start_quiz(quiz_url_name):
+    description, created_by, quiz_name = db.hmget(quiz_url_name, 
+            'description', 'created_by', 'quiz_name')
+    return render_template('quiz-start.html', quiz_name=quiz_name,
+            description=description, created_by=created_by,
+            quiz_url_name=quiz_url_name)
 
-@app.route('/quiz/<quiz_name>')
-def quiz(quiz_name):
+@app.route('/quiz/<quiz_url_name>')
+def quiz(quiz_url_name):
     #FIXME: naive random implementation, needs to be score-weighted
-    all_questions = db.hkeys(quiz_name)
+    hash_name = "{0}:questions".format(quiz_url_name)
+    all_questions = db.hkeys(hash_name)
     question = random.choice(all_questions)
-    answer = db.hget(quiz_name, question)
+    answer = db.hget(hash_name, question)
+    quiz_name = db.hget(quiz_url_name, 'quiz_name')
 
-    return render_template('templates/quiz.html', quiz_name=quiz_name,
-            question=question, answer=answer)
+    return render_template('quiz.html', quiz_name=quiz_name,
+            question=question, answer=answer, 
+            quiz_url_name=quiz_url_name)
+
+if __name__ == '__main__':
+    app.run()
