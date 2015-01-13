@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Quizalicious!</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Welcome to Quizalicious!</h1>
+    </div>
+    <div class="description">
+      <p>Select a quiz below to get started.</p>
+    </div>
+    <div class="quizzes">
+      {% for q in quizzes %}
+      <p><a class="quiz" href="/quiz/start/{{q}}">{{q}}</a></p>
+      {% endfor %}
+    </div>
+  </body>
+</html>

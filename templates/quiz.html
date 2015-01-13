@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{quiz_name}} - Quizalicious!</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>{{quiz_name}}</h1>
+    </div>
+    <div class="question">
+      <p>{{question}}</p>
+      <p><a class="show-answer" href="#">Show Answer</a></p>
+    </div>
+    <div class="answer">
+      <p>{{answer}}</p>
+      <p>
+        <a class="correct" href="/quiz/{{quiz_url_name}}?answer=correct">Got it!</a>
+        <a class="incorrect" href="/quiz/{{quiz_url_name}}?answer=incorrect">Missed it...</a>
+      </p>
+    </div>
+  </body>
+</html>
