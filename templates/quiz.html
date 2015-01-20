@@ -9,12 +9,16 @@
     </p>
 {% endblock %}
 {% block rightcol %}
-  <p><a class="btn btn-info btn-lg show-answer" role="button" href="#">Show Answer</a></p>
-  <div class="answer">
-    <p>{{answer}}</p>
+  <p>
+    <input type="button" class="btn btn-info btn-lg show-answer" onClick="displayAnswer();" value="Show Answer">  
+  </p>
+  <div class="answer" id="hidden">
+    <div class="well well-lg">
+      <p>{{answer}}</p>
+    </div>
     <p>
-      <a class="correct" href="/quiz/{{quiz_url_name}}?answer=correct">Got it!</a>
-      <a class="incorrect" href="/quiz/{{quiz_url_name}}?answer=incorrect">Missed it...</a>
+      <a class="btn btn-success btn-lg" href="/quiz/{{quiz_url_name}}?answer=correct">Got it!</a>
+      <a class="btn btn-danger btn-lg" href="/quiz/{{quiz_url_name}}?answer=incorrect">Missed it...</a>
     </p>
   </div>
 {% endblock %}
