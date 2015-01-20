@@ -1,15 +1,31 @@
 <!doctype html>
 <html lang="en">
-<html>
   <head>
+    <meta name="viewport" content="width=device-width, initial=scale=1">
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
-    <script type="text/javascript" href="/static/js/bootstrap.js">
+    <script type="text/javascript" src="/static/js/bootstrap.js"></script>
     <title>{% block title %}{% endblock %} - Quizalicious</title>
   </head>
   <body>
-    {% block header %}{% endblock %}
-    {% block leftcol %}{% endblock %}
-    {% block rightcol %}{% endblock %}
-    {% block footer %}{% endblock %}
+    <div class="row">
+      <div class="col-md-12">
+        {% include 'header.html' %}
+        {% block header %}{% endblock %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        {% block leftcol %}{% endblock %}
+      </div>
+      <div class="col-md-7">
+        {% block rightcol %}{% endblock %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        {% include 'footer.html' %}
+        {% block footer %}{% endblock %}
+      </div>
+    </div>
   </body>
 </html>

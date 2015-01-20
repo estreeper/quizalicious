@@ -1,18 +1,14 @@
-<!doctype html>
-<html>
-  <head>
-    <title>{{quiz_name}} - Quizalicious!</title>
-  </head>
-  <body>
-    <div class="header">
-      <h1>{{quiz_name}}</h1>
-    </div>
-    <div class="description">
-      <p>{{description}}</p>
-      <p>Created by: {{created_by}}</p>
-    </div>
-    <div class="controls">
-      <a class="start-button" href="/quiz/{{quiz_url_name}}">Start!</a>
-    </div>
-  </body>
-</html>
+{% extends 'layout.html' %}
+{% block title %}{{quiz_name}}{% endblock %}
+{% block leftcol %}
+  <div class="quiztitle">
+    <h1>{{quiz_name}}</h1>
+  </div>
+  <div class="description">
+    <p>{{description}}</p>
+    <p>Created by: {{created_by}}</p>
+  </div>
+  <div class="controls">
+    <a class="start-button" href="/quiz/{{quiz_url_name}}">Start!</a>
+  </div>
+{% endblock %}
