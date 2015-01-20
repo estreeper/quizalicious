@@ -1,24 +1,37 @@
 {% extends 'layout.html' %}
 {% block title %}{{quiz_name}}{% endblock %}
-{% block leftcol %}
-  <p>
-    <h1>{{quiz_name}}</h1>
-  </p>
-    <p class="lead">
-      {{question}}
-    </p>
-{% endblock %}
-{% block rightcol %}
-  <p>
-    <input type="button" class="btn btn-info btn-lg show-answer" onClick="displayAnswer();" value="Show Answer">  
-  </p>
-  <div class="answer" id="hidden">
-    <div class="well well-lg">
-      <p>{{answer}}</p>
-    </div>
+{% block header %}
+<div class="row">
+  <div class="col-md-8 panel panel-default pager">
     <p>
-      <a class="btn btn-success btn-lg" href="/quiz/{{quiz_url_name}}?answer=correct">Got it!</a>
-      <a class="btn btn-danger btn-lg" href="/quiz/{{quiz_url_name}}?answer=incorrect">Missed it...</a>
+      <h1>{{quiz_name}}</h1>
     </p>
+  </div>
+</div>
+{% endblock %}
+<div class="row">
+{% block leftcol %}
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>{{question}}</h3>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  {% block rightcol %}
+  <div class="col-md-4">
+    <div>
+      <input type="button" class="btn-block btn-info btn-lg show-answer" onClick="displayAnswer();" value="Show Answer">  
+    </div>
+    <div class="answer" id="hidden">
+      <div class="well well-lg">
+        <h4>{{answer}}</h4>
+      </div>
+      <div class="btn-group btn-group-justified" role="group">
+        <a class="btn btn-success btn-lg" href="/quiz/{{quiz_url_name}}?answer=correct">Got it!</a>
+        <a class="btn btn-danger btn-lg" href="/quiz/{{quiz_url_name}}?answer=incorrect">Missed it...</a>
+      </div>
+    </div>
   </div>
 {% endblock %}
