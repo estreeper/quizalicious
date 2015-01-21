@@ -3,6 +3,11 @@
     <div class="page-header">
       <h2><small>Quizalicious!</small></h2>
     </div>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info">
+      {{ message|safe }}
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% block header %}{% endblock %}

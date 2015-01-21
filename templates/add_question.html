@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% from '_formhelper.html' import render_field %}
+
+{% block leftcol %}
+<div class="row">
+  <div class="col-md-4">
+    {% for error in error %}
+    <div class="alert alert-danger">
+      {{ error|safe }}
+    </div>
+    {% endfor %}
+    <form method=post action='/quiz/{{ quiz_url_name }}/add/question'>
+      <div class="form-group">
+        {{ render_field(form.question) }}
+        {{ render_field(form.answer) }}
+      </div>
+      <div>
+        <input class="btn btn-success" type="submit" value="Add Question">
+      </div>
+    </form>
+  </div>
+</div>
+
+    
+{% endblock %}

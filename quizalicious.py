@@ -1,10 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, flash, redirect
 from redis import StrictRedis
+from forms import AddQuizQuestion
 import random
 import config
 
 app = Flask(__name__)
 app.debug = config.DEBUG
+app.secret_key = config.SECRET_KEY
 
 db = StrictRedis(host=config.REDIS_HOST, port=config.REDIS_PORT)
 
@@ -33,6 +35,26 @@ def quiz(quiz_url_name):
     return render_template('quiz.html', quiz_name=quiz_name,
             question=question, answer=answer, 
             quiz_url_name=quiz_url_name)
+
+@app.route('/quiz/<quiz_url_name>/add/question', methods=['GET', 'POST'])
+def add_question(quiz_url_name):
+    hash_name = "{0}:questions".format(quiz_url_name)
+    form = AddQuizQuestion(request.form)
+    error=[]
+    if request.method == 'POST':
+        if form.validate():
+            question = form.question.data
+            answer = form.answer.data
+            db.hset(hash_name, question, answer)
+            flash("Question added!")
+            return redirect('/quiz/{0}/add/question'.format(quiz_url_name))
+        else:
+            flash("It's no good! Check errors below.")
+            error=form.errors
+
+    return render_template('add_question.html', form=form, error=error,
+                            quiz_url_name=quiz_url_name)
+
 
 if __name__ == '__main__':
     app.run()

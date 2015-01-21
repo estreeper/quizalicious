@@ -1,4 +1,4 @@
-from wtforms import Form, TextField, TextAreaField
+from wtforms import Form, TextField, TextAreaField, validators
 
 class AddQuiz(Form):
     title = TextField('Name of quiz', [validators.Length(max=60), 

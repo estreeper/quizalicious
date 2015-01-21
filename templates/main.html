@@ -1,7 +1,14 @@
 {% extends 'layout.html' %}
 {% block leftcol %}
-  <p>Select a quiz below to get started.</p>
+  <div class="lead">
+    Select a quiz below to get started.
+  </div>
   {% for q in quizzes %}
-  <p><a class="quiz" href="/quiz/start/{{q}}">{{q}}</a></p>
+  <div>
+    <h3>
+      <a class="quiz" href="/quiz/start/{{q}}">{{q}}</a>
+      <span class="label label-warning"><a href="/quiz/{{q}}/add/question">Edit</a></span>
+    </h3>
+  </div>
   {% endfor %}
 {% endblock %}
