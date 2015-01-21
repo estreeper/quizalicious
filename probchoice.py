@@ -2,20 +2,19 @@ import random
 
 class ProbabalisticChoice(random.Random):
 
-    def probabalisticchoice(self, probs, choices):
+    def probabalisticchoice(self, pairs):
+        """Takes a list of pairs and returns a chosen one of the elements from a pair.
+        The pairs should be in the form (choice, probability)"""
         cumul_probs = []
         total = 0
         rand_val = self.uniform(0, 1)
-        #print rand_val
         item_num = 0
 
-        for i in range(len(probs)):
-            total += probs[i]
+        for i in range(len(pairs)):
+            total += pairs[i][1]
             cumul_probs.append(total)
 
         for prob in cumul_probs:
             if rand_val < prob:
-                #print prob
-                #print choices[item_num]
-                return choices[item_num]
+                return pairs[item_num][0]
             item_num += 1
