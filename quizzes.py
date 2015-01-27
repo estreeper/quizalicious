@@ -21,3 +21,8 @@ class Quiz(Base):
         db.hdel(QUESTION_HASH, q_id)
         db.hdel(ANSWER_HASH, q_id)
 
+    def update_question(self, q_id, updated_question):
+        db.hset(QUESTION_HASH, q_id, updated_question)
+
+    def update_answer(self, q_id, updated_answer):
+        db.hset(ANSWER_HASH, q_id, updated_answer)
